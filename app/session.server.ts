@@ -5,9 +5,6 @@ import invariant from "tiny-invariant";
 
 invariant(process.env.SESSION_SECRET, "SESSION_SECRET needs to be set")
 const sessionSecret = process.env.SESSION_SECRET;
-if (!sessionSecret) {
-    throw new Error("SESSION_SECRET must be set");
-}
 
 const storage = createCookieSessionStorage({
     cookie: {
