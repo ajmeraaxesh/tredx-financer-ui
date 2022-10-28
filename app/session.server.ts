@@ -1,4 +1,4 @@
-import { createCookieSessionStorage, json, redirect, Request } from "@remix-run/node";
+import { createCookieSessionStorage, json, redirect } from "@remix-run/node";
 import invariant from "tiny-invariant";
 
 
@@ -72,13 +72,6 @@ export async function getActiveCompany(request: Request) {
     return activeCompany;
 }
 
-export async function getActiveFy(request) {
-    ;
-    const session = await getUserSession(request);
-    const activeFy = session.get("activeFy")
-    if (!activeFy || typeof activeFy !== "object") return null;
-    return activeFy;
-}
 
 export async function getAccessToken(request: Request) {
     const session = await getUserSession(request);
@@ -88,15 +81,13 @@ export async function getAccessToken(request: Request) {
 }
 
 export async function getApiCommonHeaders(request: Request) {
-    const accessToken = await getAccessToken(request)
-    const activeCompany = await getActiveCompany(request)
-    const activeFy = await getActiveFy(request)
+
+    //TODO:Replace this with actual API TOKEN from the request
+    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NzQyODA5LTRiM2EtNDM3Mi1hZmNhLTI1YzliMjBlNGRlNSIsIm5hbWUiOiJOYXRpb25hbCBCYW5rICIsImVtYWlsIjoibmF0aW9uYWxiYW5rQGdtYWlsLmNvbSIsIm1vYmlsZSI6Ijk4NTY2MjEzODkiLCJpc0FwaVVzZXIiOmZhbHNlLCJhcGlTZXJ2aWNlIjoiRklOQU5DSUVSIiwicm9sZSI6WyJBRE1JTiJdLCJlbnRpdHkiOnsiaWQiOiIxYmZlYzhlMS1mZjg2LTRmMTMtOWJjNi03ODM5M2IzNGE3YzIiLCJuYW1lIjoiTmF0aW9uYWwgQmFuayJ9LCJpYXQiOjE2NjY4NzgxNDIsImV4cCI6MTY2NzA1MDk0Mn0.6sJcdc7179di2Nf7vbQH5cXS9w7HZus3-j2l_d12kxI"
+    //await getAccessToken(request)
     return {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${accessToken}`,
-        'company_details': JSON.stringify(activeCompany),
-        // { "id": 162, "name": "Ashirwad trading", "fy_details": [{ "id": 2, "fy_id": 2, "name": "2021-22", "fy_start": "2021-03-31T18:30:00.000Z", "fy_end": "2022-04-01T17:59:59.000Z" }, { "id": 3, "fy_id": 3, "name": "2022-23", "fy_start": "2022-03-31T18:30:00.000Z", "fy_end": "2023-04-01T17:59:59.000Z" }] }
-        'fy_details': JSON.stringify({ "id": activeFy.fy_id })
     }
 }
 
