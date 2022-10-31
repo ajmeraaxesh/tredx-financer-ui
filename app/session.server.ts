@@ -2,7 +2,6 @@ import { createCookieSessionStorage, json, redirect } from "@remix-run/node";
 import invariant from "tiny-invariant";
 
 
-
 invariant(process.env.SESSION_SECRET, "SESSION_SECRET needs to be set")
 const sessionSecret = process.env.SESSION_SECRET;
 
@@ -83,7 +82,8 @@ export async function getAccessToken(request: Request) {
 export async function getApiCommonHeaders(request: Request) {
 
     //TODO:Replace this with actual API TOKEN from the request
-    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NzQyODA5LTRiM2EtNDM3Mi1hZmNhLTI1YzliMjBlNGRlNSIsIm5hbWUiOiJOYXRpb25hbCBCYW5rICIsImVtYWlsIjoibmF0aW9uYWxiYW5rQGdtYWlsLmNvbSIsIm1vYmlsZSI6Ijk4NTY2MjEzODkiLCJpc0FwaVVzZXIiOmZhbHNlLCJhcGlTZXJ2aWNlIjoiRklOQU5DSUVSIiwicm9sZSI6WyJBRE1JTiJdLCJlbnRpdHkiOnsiaWQiOiIxYmZlYzhlMS1mZjg2LTRmMTMtOWJjNi03ODM5M2IzNGE3YzIiLCJuYW1lIjoiTmF0aW9uYWwgQmFuayJ9LCJpYXQiOjE2NjY4NzgxNDIsImV4cCI6MTY2NzA1MDk0Mn0.6sJcdc7179di2Nf7vbQH5cXS9w7HZus3-j2l_d12kxI"
+    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2NzQyODA5LTRiM2EtNDM3Mi1hZmNhLTI1YzliMjBlNGRlNSIsIm5hbWUiOiJOYXRpb25hbCBCYW5rICIsImVtYWlsIjoibmF0aW9uYWxiYW5rQGdtYWlsLmNvbSIsIm1vYmlsZSI6Ijk4NTY2MjEzODkiLCJpc0FwaVVzZXIiOmZhbHNlLCJhcGlTZXJ2aWNlIjoiRklOQU5DSUVSIiwicm9sZSI6WyJBRE1JTiJdLCJlbnRpdHkiOnsiaWQiOiIxYmZlYzhlMS1mZjg2LTRmMTMtOWJjNi03ODM5M2IzNGE3YzIiLCJuYW1lIjoiTmF0aW9uYWwgQmFuayJ9LCJpYXQiOjE2NjcyMTQ5MzYsImV4cCI6MTY2NzM4NzczNn0.ZhUCSAZEC8JuvlM_z5YOIaNz5Hn3wmN446Vi35NXl10"
+
     //await getAccessToken(request)
     return {
         'Content-Type': 'application/json',

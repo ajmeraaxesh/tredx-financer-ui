@@ -31,4 +31,3 @@ export const getApprovedBuyersAndSellers = async (request: Request ,filters = {}
     const data = await response.json()
     return data
 }
-
