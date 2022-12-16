@@ -1,4 +1,4 @@
-
+import * as React from 'react';
 
 type PropType = {
     children: React.ReactNode
